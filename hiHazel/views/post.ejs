@@ -1,0 +1,88 @@
+<%- include('partials/header') -%>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div>
+          <div id="qrcode"></div>
+          <button id="print">Print Code</button>
+        </div>
+        <h2>
+          <%= user.userName %>'s Profile
+        </h2>
+        <ul class="list-unstyled">
+          <li>Name: <%= post.name %></li>
+          <li>Grade: <%= post.grade %></li>
+          <li>Teacher: <%= post.teacher%></li>
+          <li>Age: <%= post.age %></li>
+          <li>Weight: <%= post.weight %></li>
+          <li>Blood Type: <%= post.blood_type %></li>
+          <li>Allergies: <%= post.allergies %></li>
+          <li>Conditions: <%= post.conditions %></li>
+          <li>Emergency Contacts
+          <li><button>Primary Contact</button></li>
+          <li><button>Secondary Contact</button></li>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <img class="img-fluid" src="<%= post.image%>" />
+        <div class="row justify-content-between">
+          <a href="/feed"><button>Return to Feed</button></a> 
+          <form action="/post/edit/<%= post.id%>" method="GET" enctype="multipart/form-data">
+            <a href="/post/edit/<%= post.id%>"><button type="submit" value="Upload">Edit</button></a>
+          </form>
+          <%if(post.user==user.id){ %>
+            <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST">
+              <button type="submit">Delete</button>
+            </form>
+            <%}%>
+            <form action="/getChat/:userName" method="GET" enctype="multipart/form-data">
+              <a href="/getChat/:userName"><button type="submit" value="Upload">Chat</button></a>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  /getChat/:userName
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+  <script type="text/javascript"> //make sure to make a javascript file -->
+
+    console.log(window.location.href)
+    const picture = new QRCode(document.getElementById('qrcode'))
+    picture.makeCode(`${window.location.href}`)
+    const print = document.querySelector('#print')
+
+    // printable qr code
+    function qrPrint() {
+      const qrCodeEllie = document.getElementById('qrcode').getElementsByTagName('canvas')[0]
+
+      let img = new Image(); //make sure to put dimensions into a stylesheet later
+      img.src = getCanvasImage(qrCodeEllie)
+
+      let newWindow = window.open("", "_blank")
+      newWindow.document.write('<html><body onload="window.print()"><img src="' + img.src + '"></body></html>');
+      // need 
+      newWindow.document.close()
+    }
+
+    function getCanvasImage(element) {
+      let canvas = document.createElement('canvas')
+      let context = canvas.getContext('2d')
+
+      canvas.width = element.width
+      canvas.height = element.height
+
+      // Draw the element onto the canvas
+      context.drawImage(element, 0, 0)
+
+      // Return the image data
+      return canvas.toDataURL('image/png')
+    }
+
+    print.addEventListener('click', qrPrint);
+
+  </script>
+
+  <%- include('partials/footer') -%>

@@ -1,0 +1,79 @@
+<%- include('partials/header') -%>
+
+  <form action="/post/edit/<%= post.id%>/?_method=PUT" method="POST">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="name" value="<%= post.name %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="age" class="col-sm-2 col-form-label">Grade</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="grade" value="<%= post.grade %>" name="grade">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="age" class="col-sm-2 col-form-label">Teacher</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="teacher" value="<%= post.teacher %>" name="teacher">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="age" class="col-sm-2 col-form-label">Age</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="age" value="<%= post.age %>" name="age">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="weight" value="<%= post.weight%>" name="weight">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="blood" class="col-sm-2 col-form-label">Blood Type</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="blood_type" value="<%= post.blood_type %>" name="blood_type">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="allergies" class="col-sm-2 col-form-label">Allergies</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="allergies" value="<%= post.allergies %>" name="allergies">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="conditions" class="col-sm-2 col-form-label">Conditions</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="conditions" value="<%= post.conditions %>" name="conditions">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="primary_contact" class="col-sm-2 col-form-label">Primary Contact</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="primary_contact" name="primary_contact"
+          value="<%= post.primary_contact %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="secondary_contact" class="col-sm-2 col-form-label">Secondary Contact</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="secondary_contact" name="secondary_contact"
+          value="<%= post.secondary_contact %>">
+        <div class="col-sm-10"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+    </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="mb-3">
+        <label for="imgUpload" class="form-label">Image</label>
+        <input type="file" class="form-control" id="imageUpload" name="file">
+      </div>
+      <ul class="list-unstyled">
+        <!-- you'll figure out how to do this later honey -->
+      </ul>
+    </div>
+  </form>
+  <%- include('partials/footer') -%>
