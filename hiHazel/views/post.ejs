@@ -36,15 +36,13 @@
               <button type="submit">Delete</button>
             </form>
             <%}%>
-            <form action="/getChat/:userName" method="GET" enctype="multipart/form-data">
-              <a href="/getChat/:userName"><button type="submit" value="Upload">Chat</button></a>
+            <form action="/getChat/<%= post._id %>" method="GET" enctype="multipart/form-data">
+              <a href="/getChat/<%= post._id %>"><button type="submit" value="Upload">Chat</button></a>
             </form>
         </div>
       </div>
     </div>
   </div>
-
-  /getChat/:userName
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
   <script type="text/javascript"> //make sure to make a javascript file -->

@@ -88,7 +88,7 @@ const user = userJoin(socket.id, username, room)
 socket.join(user.room)
 
 // WELCOME CURRENT USER =================
-  socket.emit('message', formatMessage(botName, 'Welcome to your chat!'))
+  socket.emit('message', formatMessage('Welcome to your chat!'))
 
 
 // BROADCAST WHEN A USER CONNECTS ===================
@@ -96,7 +96,7 @@ socket.broadcast
 .to(user.room)
 .emit(
   'message',  
-  formatMessage(botName, `${user.username} has joined the chat`))
+  formatMessage(botName, `${user.name} has joined the chat`))
 
 
   // SEND USERS AND ROOM INFO =======
@@ -106,12 +106,11 @@ socket.broadcast
   })
 })
 
-
 // LISTEN FOR ChatMessage ===============
 socket.on('chatMessage', (msg) => {
   const user = getCurrentUser(socket.id)
 
-io.to(user.room).emit('message',  formatMessage(user.username, msg))
+io.to(user.room).emit('message',  formatMessage(user.name, msg))
 })
 
 // PRIVATE ROOM ============
@@ -129,7 +128,7 @@ socket.on("disconnect", () => {
   if (user) {
     io.to(user.room).emit(
       "message",
-      formatMessage(botName, `${user.username} has left the chat`)
+      formatMessage(`${user.name} has left the chat`)
     );
     // Send users and room info
     io.to(user.room).emit("roomUsers", {

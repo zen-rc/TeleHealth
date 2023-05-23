@@ -7,7 +7,6 @@ module.exports = {
     try {
     console.log("this is user ID", typeof req.user._id)
       const posts = await Post.find({ user: req.user._id }); //added an underscore to ID
-      console.log(posts.length, " " + posts[0]) //finding what profile is being sent
       res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -40,6 +39,8 @@ module.exports = {
   createPost: async (req, res) => {
     const { 
       name,
+      grade,
+      teacher,
       age,
       weight,
       blood_type,
@@ -58,6 +59,8 @@ module.exports = {
 
       await Post.create({
         name,
+        grade,
+        teacher,
         age,
         weight,
         blood_type,
@@ -99,6 +102,8 @@ module.exports = {
         {
           $set: { 
             name: req.body.name,
+            grade: req.body.grade,
+            teacher: req.body.teacher,
             age: req.body.age,
             weight: req.body.weight,
             blood_type: req.body.blood_type,
@@ -126,9 +131,9 @@ module.exports = {
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/feed");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/feed");
     }
   },
 };
