@@ -1,0 +1,109 @@
+<%- include('partials/header') -%>
+<!--  -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div>
+              <p><strong>user</strong>: @<%= user.userName %></p>
+             <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
+              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+          </div>
+              <h2>Profile</h2> 
+              
+              <% for (var i = 0; i < posts.length; i++) { %>
+            <!-- post and posts are NOT the same. post is the array we are looping through. -->
+            <% } %>
+              <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                  <div class="form-group row">
+                      <label for="name" class="col-sm-2 col-form-label">Name</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" id="name" name="name">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Grade</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="grade" name="grade">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="name" class="col-sm-2 col-form-label">Teacher</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="teacher" name="teacher">
+                  </div>
+              </div>
+                  <div class="form-group row">
+                      <label for="age" class="col-sm-2 col-form-label">Age</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" id="age" name="age">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="weight"  name="weight">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="blood" class="col-sm-2 col-form-label">Blood Type</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="blood_type" name="blood_type">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="allergies" class="col-sm-2 col-form-label">Allergies</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="allergies" name="allergies">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="conditions" class="col-sm-2 col-form-label">Conditions</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="conditions" name="conditions">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="primary_contact" class="col-sm-2 col-form-label">Primary Contact</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="primary_contact" name="primary_contact" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="secondary_contact" class="col-sm-2 col-form-label">Secondary Contact</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="secondary_contact" name="secondary_contact">
+                      <div class="col-sm-10"></div>
+                  </div>
+                      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                  </div>
+              </div>
+              
+              <div class="col-sm-4">
+                <!-- <h2><%= user.userName %></h2>  -->
+                <!-- maybe patient Name should be the bee sting for username? -->
+                  
+                  <div class="mb-3">
+                    <label for="imgUpload" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="imageUpload" name="file" >
+                  </div>
+           
+           <!-- having issues with the loop. need to find the right way to close the loop -->
+                  <ul class="list-unstyled">
+                      <!-- <li><a href="profileEdit.html"><button class="btn btn-primary btn-sm my-1">Edit Profile</button></a></li> -->
+                      <!-- you'll figure out how to do this later honey -->
+                      <li><a href="chat.html"><button class="btn btn-primary btn-sm my-1">Chat</button></a></li>
+                      <li><a href="history.html"><button class="btn btn-danger btn-sm my-1">Records</button></a></li>
+                  </ul>
+              </div>
+          </form>
+        </div>
+      </div>
+
+
+  
+        </div>  
+      </div>  
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>
