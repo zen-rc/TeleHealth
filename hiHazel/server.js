@@ -14,12 +14,10 @@ const bodyParser = require('body-parser');
 const qrCodejs = require('qrcodejs');
 const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
-const path = require('path')
+// const { Server } = require("socket.io");
 const socketio = require('socket.io')
-const { userJoin, getCurrentUser, userLeave, getRoomUsers, formatMessage } = require('./services/socket')
-
+const io = socketio(server)
+const path = require('path')
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -34,7 +32,7 @@ connectDB();
 app.set("view engine", "ejs");
 
 //Static Folder
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')))
 
 //Body Parsing
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -75,68 +73,3 @@ app.use("/post", postRoutes);
 app.listen(process.env.PORT, () => {
   console.log("Server is running, you better catch it!");
 });
-
-
-// Yorelisa's help /////////////////////////////
-
-// RUN WHEN CLIENT CONNECTS ==========================
-io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room}) => {
-const user = userJoin(socket.id, username, room)
-
-
-socket.join(user.room)
-
-// WELCOME CURRENT USER =================
-  socket.emit('message', formatMessage('Welcome to your chat!'))
-
-
-// BROADCAST WHEN A USER CONNECTS ===================
-socket.broadcast
-.to(user.room)
-.emit(
-  'message',  
-  formatMessage(botName, `${user.name} has joined the chat`))
-
-
-  // SEND USERS AND ROOM INFO =======
-  io.to(user.room).emit('roomUsers', {
-    room: user.room,
-    users: getRoomUsers(user.room)
-  })
-})
-
-// LISTEN FOR ChatMessage ===============
-socket.on('chatMessage', (msg) => {
-  const user = getCurrentUser(socket.id)
-
-io.to(user.room).emit('message',  formatMessage(user.name, msg))
-})
-
-// PRIVATE ROOM ============
-socket.on('chatInviteRoom', (privateRoom) => {
-  const user = getCurrentUser(socket.id)
-  console.log(user, privateRoom)
-io.to(user.room).emit('inviteRoom',privateRoom)
-})
-
-
-// RUNS WHEN CLIENT DISCONNECTS =============
-socket.on("disconnect", () => {
-  const user = userLeave(socket.id);
-
-  if (user) {
-    io.to(user.room).emit(
-      "message",
-      formatMessage(`${user.name} has left the chat`)
-    );
-    // Send users and room info
-    io.to(user.room).emit("roomUsers", {
-      room: user.room,
-      users: getRoomUsers(user.room)
-})     
-}
-})
-})
-
-
