@@ -4,14 +4,16 @@ const chatMessages = document.querySelector('.chat-messages')
 
 // get username and room from URL
 // not sure if I need this since ideally this would be coming from user and post collection
-const {username, room} = Qs.parse(location.search, {
+const { username, room } = Qs.parse(location.search, {
     ignoreQureyPrefix: true
 })
-const socket = io()
+
 console.log("this is the username", username)
+const socket = io()
+
 // Message from server
 socket.on('message', message => {
-    console.log(message)
+    console.log('main js', message)
     outputMessage(message)
 
     // scroll down (not working but will just revisit later)
@@ -24,8 +26,7 @@ chatForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     // to get text input
-    const msg = e.target.elements.msg.value
-
+    const msg = { text: e.target.elements.msg.value, username: username, time: new Date() }
     // emitting a message to server
     socket.emit('chatMessage', msg)
 

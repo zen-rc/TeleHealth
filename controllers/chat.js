@@ -4,7 +4,7 @@
 
 module.exports = {
   getChat: (req, res) => {
-    res.render("chatHome.ejs");
+    res.render("chat.ejs", {user:req.user});
   },
 };
 

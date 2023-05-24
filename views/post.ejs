@@ -18,10 +18,9 @@
           <li>Blood Type: <%= post.blood_type %></li>
           <li>Allergies: <%= post.allergies %></li>
           <li>Conditions: <%= post.conditions %></li>
-          <li>Emergency Contacts
-          <li><button>Primary Contact</button></li>
-          <li><button>Secondary Contact</button></li>
-          </li>
+          <li>Emergency Contacts</li>
+          <li>Primary Contact: <%= post.primary_contact %></li>
+          <li>Secondary Contact: <%= post.secondary_contact %></li>
         </ul>
       </div>
       <div class="col-sm-4">
@@ -36,9 +35,9 @@
               <button type="submit">Delete</button>
             </form>
             <%}%>
-            <form action="/getChat" method="GET" enctype="multipart/form-data">
-              <a href="/getChat"><button type="submit" value="Upload">Chat</button></a>
-            </form>
+            <!-- <form action="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>" method="GET"> -->
+              <a href="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>"><button>Chat</button></a>
+            <!-- </form> -->
         </div>
       </div>
     </div>
