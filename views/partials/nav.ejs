@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="chalkboard-nav writing">
+      <h2 class="writing mb-4"><%= user.userName %>'s Profile</h2>
+      <a href="/feed" class="chalkboard-link writing">Return to Feed</a>
+      <a href="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>" class="chalkboard-link writing">Chat</a>
+      <a href="#" id="print" class="chalkboard-link writing">Print QR Code</a>
+    <!-- </button >Print Code</button> -->
+      <a href="/post/edit/<%= post.id%>" class="chalkboard-link writing">Edit</a>
+      <a href="/post/deletePost/<%= post.id %>" class="chalkboard-link writing">Delete</a>
+      <!-- <%if(post.user==user.id){ %>
+        <form action="/post/deletePost/<%= post.id %>?_method=DELETE" enctype="multipart/form-data" method="POST">
+          <button class="chalkboard-link writing" type="submit">Delete</button>
+        </form>
+        <%}%> -->
+      <a href="/logout" class="chalkboard-link writing">Log out</a>
+      
+    </div>
+    <div class="content">

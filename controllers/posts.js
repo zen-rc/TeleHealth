@@ -48,6 +48,8 @@ module.exports = {
       conditions,
       primary_contact,
       secondary_contact,
+      emergency_instructions,
+      special_instructions,
     } = req.body
     try {
       // Upload image to cloudinary
@@ -68,6 +70,8 @@ module.exports = {
         conditions,
         primary_contact,
         secondary_contact,
+        emergency_instructions,
+        special_instructions,
         user: req.user.id,
         image: result.secure_url,
         cloudinaryId: result.public_id,
@@ -110,7 +114,9 @@ module.exports = {
             allergies: req.body.allergies,
             conditions: req.body.conditions,
             primary_contact: req.body.primary_contact,
-            secondary_contact: req.body.secondary_contact
+            secondary_contact: req.body.secondary_contact,
+            emergency_instructions: req.body.emergency_instructions,
+            special_instructions: req.body.special_instructions,
           },
         }
       );

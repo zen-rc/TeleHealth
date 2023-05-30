@@ -1,12 +1,13 @@
 <%- include('partials/header') -%>
+
 <!--  -->
       <div class="container">
         <div class="row">
           <div class="col-md-8">
             <div>
-              <p><strong>user</strong>: @<%= user.userName %></p>
+              <p class="d-none"><strong>user</strong>: @<%= user.userName %></p>
              <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              <!-- <a href="/logout" class="col-3 d-none"><button class= "green white">Logout</button></a> -->
           </div>
               <h2>Profile</h2> 
               
@@ -69,30 +70,46 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                      <label for="secondary_contact" class="col-sm-2 col-form-label">Secondary Contact</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="secondary_contact" name="secondary_contact">
-                      <div class="col-sm-10"></div>
+                    <label for="secondary_contact" class="col-sm-2 col-form-label">Secondary Contact</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="secondary_contact" name="secondary_contact" >
                   </div>
-                      <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                </div>
+                <div class="form-group row">
+                  <label for="emergency_instructions" class="col-sm-2 col-form-label">Emergency Instructions</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="emergency_instructions" name="emergency_instructions">
                   </div>
+                </div>
+                <div class="form-group row">
+                  <label for="special_instructions" class="col-sm-2 col-form-label">Special Instructions</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="special_instructions" name="special_instructions">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="imgUpload" class="col-sm-2 col-form-label">Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="imageUpload" name="file" placeholder="No new file chosen">
+                  </div>
+                </div>
+                      <button type="submit" class="btn white green" value="Upload">Submit</button>
+                  </div>
+                  
               </div>
-              
+                  </div>
               <div class="col-sm-4">
                 <!-- <h2><%= user.userName %></h2>  -->
                 <!-- maybe patient Name should be the bee sting for username? -->
                   
-                  <div class="mb-3">
-                    <label for="imgUpload" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="imageUpload" name="file" >
-                  </div>
+                 
            
            <!-- having issues with the loop. need to find the right way to close the loop -->
                   <ul class="list-unstyled">
                       <!-- <li><a href="profileEdit.html"><button class="btn btn-primary btn-sm my-1">Edit Profile</button></a></li> -->
                       <!-- you'll figure out how to do this later honey -->
-                      <li><a href="chat.html"><button class="btn btn-primary btn-sm my-1">Chat</button></a></li>
-                      <li><a href="history.html"><button class="btn btn-danger btn-sm my-1">Records</button></a></li>
+                      <!-- <li><a href=""><button class="btn btn-primary btn-sm my-1">Chat</button></a></li> -->
+                      <!-- <li><a href="history.html"><button class="btn btn-danger btn-sm my-1">Records</button></a></li> -->
                   </ul>
               </div>
           </form>

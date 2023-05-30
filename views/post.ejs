@@ -1,11 +1,39 @@
 <%- include('partials/header') -%>
-  <div class="container">
+<%- include('partials/nav') -%>
+    <div class="content thirty">
+      <div class="student-box">
+        <div class="student-info">
+          <h3><%= post.name %></h3>
+          <ul>
+            <li><%= post.grade %> Grader</li>
+            <li><%= post.teacher%>'s class</li>
+            <li><%= post.age %> years old</li>
+            <li>Weighs <%= post.weight %></li>
+            <li>Allergic to <%= post.allergies %></li>
+            <li>Conditions: <%= post.conditions %></li>
+            <li>Special Instructions: <%= post.special_instructions %></li>
+          </ul>
+        </div>
+        <div class="student-picture">
+          <img src="<%= post.image%>" alt="Student Picture" width="500">
+          <ul>
+            <li>Primary Contact: <%= post.primary_contact %></li>
+            <li><%= post.primary_phone%></li>
+            <li>Secondary Contact: <%= post.secondary_contact %></li>
+            <li><%= post.secondary_phone%></li>
+            <li>Blood Type: <%= post.blood_type %></li>
+            <li>Emergency Instructions: <%= post.emergency_instructions %></li>
+          </ul>
+        </div>
+      </div>
+      <div class ="d-none" id="qrcode"></div>
     <div class="row">
       <div class="col-sm-8">
         <div>
-          <div id="qrcode"></div>
-          <button id="print">Print Code</button>
-        </div>
+          <div class="clouds p-5"></div>
+          <!-- <div id="qrcode"></div> -->
+          <!-- <button id="print">Print Code</button> -->
+        <!-- </div>
         <h2>
           <%= user.userName %>'s Profile
         </h2>
@@ -18,7 +46,7 @@
           <li>Blood Type: <%= post.blood_type %></li>
           <li>Allergies: <%= post.allergies %></li>
           <li>Conditions: <%= post.conditions %></li>
-          <li>Emergency Contacts</li>
+          <li>Emergency Contact Number</li>
           <li>Primary Contact: <%= post.primary_contact %></li>
           <li>Secondary Contact: <%= post.secondary_contact %></li>
         </ul>
@@ -35,11 +63,11 @@
               <button type="submit">Delete</button>
             </form>
             <%}%>
-            <!-- <form action="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>" method="GET"> -->
-              <a href="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>"><button>Chat</button></a>
+             <form action="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>" method="GET"> -->
+              <!-- <a href="/chat/getChat?room=<%= post.id%>&username=<%= user.userName %>"><button>Chat</button></a> -->
             <!-- </form> -->
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
   </div>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
@@ -57,10 +85,10 @@
 
       let img = new Image(); //make sure to put dimensions into a stylesheet later
       img.src = getCanvasImage(qrCodeEllie)
+      img.src.width = 50
 
       let newWindow = window.open("", "_blank")
       newWindow.document.write('<html><body onload="window.print()"><img src="' + img.src + '"></body></html>');
-      // need 
       newWindow.document.close()
     }
 

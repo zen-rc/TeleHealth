@@ -41,6 +41,12 @@ const PostSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  emergency_instructions: {
+    type: String,
+  },
+  special_instructions: {
+    type: String,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
